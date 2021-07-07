@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { randiData } from '../model/randiData';
+import { RandiService } from '../services/randi.service';
+
 @Component({
   selector: 'app-randi',
   templateUrl: './randi.component.html',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RandiComponent implements OnInit {
 
-  constructor() { }
+  randiData: randiData[] = [];
+
+  constructor(public rs: RandiService) { }
 
   ngOnInit(): void {
+    this.rs.getRandiData().subscribe((response) => {
+      this.randiData=response;
+    })
   }
 
 }

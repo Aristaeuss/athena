@@ -1,1 +1,61 @@
-<p>this.rAndIPage</p>
+<header>
+  <p>R&I DASHBOARD</p>
+</header>
+
+<div class="container">
+  <table class="table table-trapped">
+    <thead>
+      <tr>
+        <th colspan="4"></th>
+        <th colspan="2">partner</th>
+        <th colspan="2">collaboration's model</th>
+        <th colspan="5"></th>
+        <th colspan="2"></th>
+        <th colspan="1"></th>
+        <th colspan="2">last update</th>
+      </tr>
+      <tr>
+        <th>country</th>
+        <th>gbl program</th>
+        <th>topic</th>
+        <th>R&I Project name</th>
+        <th>Name</th>
+        <th>Location</th>
+        <th>Type</th>
+        <th>Sub-type</th>
+        <th>Investment/cost type</th>
+        <th>Subject (keywords)</th>
+        <th>Sign Contract Y/N</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Capgemini contact</th>
+        <th>Partner contact</th>
+        <th>Comments</th>
+        <th>Date</th>
+        <th>Person name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let randiData of randiData">
+        <td>{{randiData.country}}</td>
+        <td>{{randiData.gbl_program}}</td>
+        <td>{{randiData.topic}}</td>
+        <td>{{randiData.project_name}}</td>
+        <td>{{randiData.partner_name}}</td>
+        <td>{{randiData.partner_location}}</td>
+        <td>{{randiData.collaboration_type}}</td>
+        <td>{{randiData.collaboration_subtype}}</td>
+        <td>{{randiData.investment}}</td>
+        <td>{{randiData.subject}}</td>
+        <td>{{randiData.sign_contract}}</td>
+        <td>{{randiData.start_date}}</td>
+        <td>{{randiData.end_date}}</td>
+        <td>{{randiData.capgemini_contact}}</td>
+        <td>{{randiData.partner_contact}}</td>
+        <td>{{randiData.comments}}</td>
+        <td>{{randiData.update_date}}</td>
+        <td>{{randiData.update_person}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
