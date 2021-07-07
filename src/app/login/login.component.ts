@@ -11,15 +11,29 @@ import { SignInData } from '../model/signInData';
 })
 export class LoginComponent implements OnInit {
 
+  isFormInvalid = false;
+  areCredentialsInvalid = false;
+
   constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit(signInForm: NgForm) {
-    console.log(signInForm.value);
+    if (!signInForm.valid) {
+      this.isFormInvalid = true;
+      this.areCredentialsInvalid = false;
+      return;
+    }
+    this.checkCredentials(signInForm);
+  }
+
+  private checkCredentials(signInForm: NgForm) {
     const signInData = new SignInData(signInForm.value.username, signInForm.value.password);
-    this.authService.authenticate(signInData);
+    if (!this.authService.authenticate(signInData)) {
+      this.isFormInvalid = false;
+      this.areCredentialsInvalid = true;
+    }
   }
 
 }

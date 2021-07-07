@@ -35,4 +35,9 @@ export class AuthService {
   private checkPassword(password: String): boolean {
     return password === this.mockedUser.getPassword();
   }
+
+  logout() {
+    this.isAuthenticate = false;
+    this.router.navigate(['']);
+  }
 }

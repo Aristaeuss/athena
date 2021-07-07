@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
+import { RandiComponent } from './randi/randi.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomepageComponent
+    HomepageComponent,
+    RandiComponent
   ],
   imports: [
     BrowserModule,
