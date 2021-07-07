@@ -10,7 +10,7 @@ export class RandiService {
 
   constructor(private http: HttpClient) { }
 
-  url: string = "http://localhost:4200/randiData";
+  url: string = "http://localhost:3000/randiData";
   getRandiData() {
     return this.http.get<randiData[]>(this.url);
   }
