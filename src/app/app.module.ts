@@ -1,6 +1,8 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,12 +16,18 @@ import { RandiComponent } from './randi/randi.component';
     AppComponent,
     LoginComponent,
     HomepageComponent,
-    RandiComponent
+    RandiComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
+    RouterModule.forRoot([
+      {path: 'randi', component: RandiComponent},
+      {path: 'homepage', component: HomepageComponent},
+      {path: '', component: LoginComponent}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]

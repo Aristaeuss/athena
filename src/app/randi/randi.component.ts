@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { randiData } from '../model/randiData';
+import { RandiData } from '../model/randiData';
 import { RandiService } from '../services/randi.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { RandiService } from '../services/randi.service';
 })
 export class RandiComponent implements OnInit {
 
-  randiData: randiData[] = [];
+  randiData: RandiData[] = [];
 
   constructor(public rs: RandiService) { }
 

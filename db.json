@@ -1,5 +1,5 @@
 {
-  "randiData":[
+  "RandiData":[
     {
       "id": "1",
       "country": "Portugal",
@@ -20,7 +20,27 @@
       "comments": "comment",
       "update_date": "update date",
       "update_person": "update person"
-
+    },
+    {
+      "id": "2",
+      "country": "Portugal",
+      "gbl_program": "glb program",
+      "topic": "topic",
+      "project_name": "project name",
+      "partner_name": "partner name",
+      "partner_location": "partner location",
+      "collaboration_type": "col type",
+      "collaboration_subtype": "col subtype",
+      "investment": "invest",
+      "subject": "subject",
+      "sign_contract": "sign",
+      "start_date": "s date",
+      "end_date": "e date",
+      "capgemini_contact": "contract",
+      "partner_contact": "contact",
+      "comments": "comment",
+      "update_date": "update date",
+      "update_person": "update person"
     }
   ]
 }

@@ -1,31 +1,32 @@
-<div class="login-wrapper">
-  <div class="card">
-    <div class="card-body">
-      <form class="signIn-form" (ngSubmit)="onSubmit(signInForm)" #signInForm='ngForm'>
-        <div class="form-floating">
-          <input type="name" class="form-control" name="username" id="floatingInput" placeholder="Username" required autofocus ngModel>
-          <label for="floatingInput">Username</label>
-        </div>
-        <div class="form-floating">
-          <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" required ngModel>
-          <label for="floatingPassword">Password</label>
-        </div>
-        <div class="checkbox mb-3">
-          <label>
-            <input type="checkbox" value="remember-me"> Remember me
-          </label>
-        </div>
-        <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
-        <div class="alert alert-danger" role="alert" *ngIf="isFormInvalid">
-          One ore more fields are empty
-        </div>
-        <div class="alert alert-danger" role="alert" *ngIf="areCredentialsInvalid">
-          One or more fields are invalid
-       </div>
-      </form>
+
+  <div class="login-wrapper">
+    <div class="card">
+      <div class="card-body">
+        <form class="signIn-form" (ngSubmit)="onSubmit(signInForm)" #signInForm='ngForm'>
+          <div class="form-floating">
+            <input type="name" class="form-control" name="username" id="floatingInput" placeholder="Username" required autofocus ngModel>
+            <label for="floatingInput">Username</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" class="form-control" name="password" id="floatingPassword" placeholder="Password" required ngModel>
+            <label for="floatingPassword">Password</label>
+          </div>
+          <div class="checkbox mb-3">
+            <label>
+              <input type="checkbox" value="remember-me"> Remember me
+            </label>
+          </div>
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Log in</button>
+          <div class="alert alert-danger" role="alert" *ngIf="isFormInvalid">
+            One ore more fields are empty
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="areCredentialsInvalid">
+            One or more fields are invalid
+         </div>
+        </form>
+      </div>
     </div>
   </div>
-</div>
 
 
 

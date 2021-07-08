@@ -1,4 +1,4 @@
-export class randiData {
+export class RandiData {
   id: string;
   country: string;
   gbl_program: string;
