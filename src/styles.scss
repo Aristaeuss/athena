@@ -1,8 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
-body {
-  height: 100%;
-  width: 100%;
-  background-image: url("../src/app/images/background.png");
-  background-size: 100% 100%;
-  background-position: top center;
+
+.bg {
+    background: url(../src/app/images/background.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+.bg01 {
+    background: url(../src/app/images/backgroundAthena.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.bg02 {
+    background: url(../src/app/images/backgroundAthena02.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
 }

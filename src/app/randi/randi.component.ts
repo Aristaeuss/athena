@@ -8,15 +8,17 @@ import { RandiService } from '../services/randi.service';
   templateUrl: './randi.component.html',
   styleUrls: ['./randi.component.scss']
 })
+
 export class RandiComponent implements OnInit {
 
-  randiData: RandiData[] = [];
+  randiDataArray: RandiData[] = []; 
 
   constructor(public rs: RandiService) { }
 
   ngOnInit(): void {
-    this.rs.getRandiData().subscribe((response) => {
-      this.randiData=response;
+    this.rs.getRandiData().subscribe({
+      next: (rAndIDataArray: RandiData[]) => {this.randiDataArray = rAndIDataArray},
+      error: (err: any) => {} //TODO
     })
   }
 

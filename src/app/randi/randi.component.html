@@ -1,60 +1,62 @@
+
 <header>
   <p>R&I DASHBOARD</p>
 </header>
 
+<div class="containerRandi">
 <table class="table table-trapped">
   <thead>
-    <tr>
-      <th colspan="4"></th>
-      <th colspan="2">partner</th>
-      <th colspan="2">collaboration's model</th>
-      <th colspan="5"></th>
-      <th colspan="2"></th>
-      <th colspan="1"></th>
-      <th colspan="2">last update</th>
-    </tr>
-    <tr>
-      <th>country</th>
-      <th>gbl program</th>
-      <th>topic</th>
-      <th>R&I Project name</th>
-      <th>Name</th>
-      <th>Location</th>
-      <th>Type</th>
-      <th>Sub-type</th>
-      <th>Investment/cost type</th>
-      <th>Subject (keywords)</th>
-      <th>Sign Contract Y/N</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Capgemini contact</th>
-      <th>Partner contact</th>
-      <th>Comments</th>
-      <th>Date</th>
-      <th>Person name</th>
-    </tr>
+      <tr class="separating_line">
+          <th colspan="4" ></th>
+          <th colspan="2">Partner</th>
+          <th colspan="2">Collaboration's Model</th>
+          <th colspan="5"></th>
+          <th colspan="2"></th>
+          <th colspan="1"></th>
+          <th colspan="2">Last Update</th>
+      </tr>
+      <tr >
+          <th>Country</th>
+          <th>GBL Program</th>
+          <th>Topic</th>
+          <th>R&I Project Name</th>
+          <th>Name</th>
+          <th>Location</th>
+          <th>Type</th>
+          <th>Sub-type</th>
+          <th>Investment/cost type</th>
+          <th>Subject (keywords)</th>
+          <th>Sign Contract Y/N</th>
+          <th>Start Date</th>
+          <th>End Date</th>
+          <th>Capgemini Contact</th>
+          <th>Partner Contact</th>
+          <th>Comments</th>
+          <th>Date</th>
+          <th>Person Name</th>
+      </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let randiData of randiData">
-      <td>{{randiData.country}}</td>
-      <td>{{randiData.gbl_program}}</td>
-      <td>{{randiData.topic}}</td>
-      <td>{{randiData.project_name}}</td>
-      <td>{{randiData.partner_name}}</td>
-      <td>{{randiData.partner_location}}</td>
-      <td>{{randiData.collaboration_type}}</td>
-      <td>{{randiData.collaboration_subtype}}</td>
-      <td>{{randiData.investment}}</td>
-      <td>{{randiData.subject}}</td>
-      <td>{{randiData.sign_contract}}</td>
-      <td>{{randiData.start_date}}</td>
-      <td>{{randiData.end_date}}</td>
-      <td>{{randiData.capgemini_contact}}</td>
-      <td>{{randiData.partner_contact}}</td>
-      <td>{{randiData.comments}}</td>
-      <td>{{randiData.update_date}}</td>
-      <td>{{randiData.update_person}}</td>
-    </tr>
+      <tr *ngFor="let randiData of randiDataArray">
+          <td>{{randiData.country}}</td>
+          <td>{{randiData.gblProgram}}</td>
+          <td>{{randiData.topic}}</td>
+          <td>{{randiData.rAndIProjectName}}</td>
+          <td>{{randiData.partnerName}}</td>
+          <td>{{randiData.partnerLocation}}</td>
+          <td>{{randiData.modelOfCollaborationType}}</td>
+          <td>{{randiData.modelOfCollaborationSubType}}</td>
+          <td>{{randiData.investmentType}}</td>
+          <td>{{randiData.subjectKeywords}}</td>
+          <td>{{randiData.signContract}}</td>
+          <td>{{randiData.startDate}}</td>
+          <td>{{randiData.endDate}}</td>
+          <td>{{randiData.capgeminiContact}}</td>
+          <td>{{randiData.partnerContact}}</td>
+          <td>{{randiData.comments}}</td>
+          <td>{{randiData.lastUpdateDate}}</td>
+          <td>{{randiData.lastUpdatePersonName}}</td>
+      </tr>
   </tbody>
 </table>
-
+</div>

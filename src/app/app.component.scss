@@ -1,12 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 .navbar-brand {
-  font-family: Raleway, sans-serif;
-  font-weight: 900;
-  font-size: 3rem;
+    font-family: Raleway, sans-serif;
+    font-weight: 900;
+    font-size: 3rem;
+}
+
+.navbar-brand:hover {
+    transform: scale(1.2);
 }
 
 .pointer {
-  cursor: pointer;
+    cursor: pointer;
 }
 
+.nav-item:hover {
+  color: blue;
+  font-weight: bold;
+}
+
+.dropdown-item:hover {
+    background: rgb(255, 255, 255);
+    color: blue;
+    font-weight: bold;
+}
+
+.dropdown-item:active {
+  color:greenyellow;
+}

@@ -1,7 +1,8 @@
 
 .login-wrapper {
-  margin: 5rem auto;
-  width: 30rem;
+  zoom: 80%;
+  margin: 270px auto;
+  width: 35rem;
 }
 
 input {
@@ -10,6 +11,9 @@ input {
 
 .card {
   padding: 2rem;
+  border-radius: 50px;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: -12px 12px 2px 1px rgba(143, 96, 96, 0.3);
 }
 
 .alert {

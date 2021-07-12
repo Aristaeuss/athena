@@ -1,20 +1,27 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 
 import { SignInData } from '../model/signInData';
 import { AuthService } from '../services/auth.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
 
-  isFormInvalid = false;
-  areCredentialsInvalid = false;
+    username?: FormControl;
 
-  constructor(private authService: AuthService) { }
+    loginForm = new FormGroup({
+        username: new FormControl('',[Validators.required, Validators.minLength(4)])
+    })
+
+    isFormInvalid = false;
+    areCredentialsInvalid = false;
+
+    constructor(private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -35,5 +42,6 @@ export class LoginComponent implements OnInit {
       this.areCredentialsInvalid = true;
     }
   }
+  
 
 }
