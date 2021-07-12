@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
+import { FilterData, OrderType } from '../model/filterData';
 import { RandiData } from '../model/randiData';
 import { RandiService } from '../services/randi.service';
-import { FilterData, OrderType } from '../model/filterData';
 
 @Component({
     selector: 'app-randihome',
@@ -11,6 +11,7 @@ import { FilterData, OrderType } from '../model/filterData';
 })
 
 export class RandihomeComponent implements OnInit {
+    filterIcon:string = "/src/assets/images/filter_icon_dshb.png";
 
     randiDataArray: RandiData[] = [];
     filteredRAndIDataArray: RandiData[] = [];
@@ -28,7 +29,7 @@ export class RandihomeComponent implements OnInit {
 
     ngOnInit(): void {
         this.rs.getRandiData().subscribe({
-            next: (rAndIDataArray: RandiData[]) => { 
+            next: (rAndIDataArray: RandiData[]) => {
                 this.randiDataArray = rAndIDataArray;
                 this.filterData();
             },
@@ -43,10 +44,10 @@ export class RandihomeComponent implements OnInit {
 
     private filterData(): void {
         this.filteredRAndIDataArray = this.randiDataArray.filter(res => {
-            return res.country.toLocaleLowerCase().match(this.country.toLocaleLowerCase()) && 
-                   res.gblProgram.toLocaleLowerCase().match(this.gblProgram.toLocaleLowerCase()) && 
-                   res.partnerName.toLocaleLowerCase().match(this.partnerName.toLocaleLowerCase()) && 
-                   res.partnerLocation.toLocaleLowerCase().match(this.partnerLocation.toLocaleLowerCase()) && 
+            return res.country.toLocaleLowerCase().match(this.country.toLocaleLowerCase()) &&
+                   res.gblProgram.toLocaleLowerCase().match(this.gblProgram.toLocaleLowerCase()) &&
+                   res.partnerName.toLocaleLowerCase().match(this.partnerName.toLocaleLowerCase()) &&
+                   res.partnerLocation.toLocaleLowerCase().match(this.partnerLocation.toLocaleLowerCase()) &&
                    res.modelOfCollaborationType.toLocaleLowerCase().match(this.modelOfCollaborationType.toLocaleLowerCase());
         })
     }

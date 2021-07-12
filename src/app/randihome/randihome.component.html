@@ -1,5 +1,11 @@
 <header>
     <p>R&I DASHBOARD</p>
+    <div class="header-button">
+      <button [routerLink]="['/randi']">go to file</button>
+    </div>
+    <div class="header-button">
+      <button class="filter-button"><img [src]="filterIcon"></button>
+    </div>
 </header>
 
 
@@ -62,39 +68,37 @@
             <button class="tableSize w-100 btn btn-lg btn-primary" (click)="ClearFilter()">Clear</button>
         </div>
 
-        <div class="column">
-            <h5>R&I Consulta Excel </h5>
-            <button class="w-100 btn btn-lg btn-primary" [routerLink]="['/randi']">Click Me</button>
-        </div>
+
     </div>
     </form>
-  
+    </div>
 
-    <!-- 
+
+    <!--
     <nav class="from-group">
-        <input type="text" class="from-control" name="country" placeholder="Search by Country" [(ngModel)]="country" (ngModelChange)="SearchCountry()"/>    
+        <input type="text" class="from-control" name="country" placeholder="Search by Country" [(ngModel)]="country" (ngModelChange)="SearchCountry()"/>
     </nav>
 
     <nav class="from-group">
-        <input type="text" class="from-control" name="gblProgram" placeholder="Search by GBL" [(ngModel)]="gblProgram" (ngModelChange)="SearchGBL()"/>    
+        <input type="text" class="from-control" name="gblProgram" placeholder="Search by GBL" [(ngModel)]="gblProgram" (ngModelChange)="SearchGBL()"/>
     </nav>
 
     <nav class="from-group">
-        <input type="text" class="from-control" name="partnerName" placeholder="Search by Partner Name" [(ngModel)]="partnerName" (ngModelChange)="SearchPartnerName()"/>    
+        <input type="text" class="from-control" name="partnerName" placeholder="Search by Partner Name" [(ngModel)]="partnerName" (ngModelChange)="SearchPartnerName()"/>
     </nav>
 
     <nav class="from-group">
-        <input type="text" class="from-control" name="partnerLocation" placeholder="Search by Partner Location" [(ngModel)]="partnerLocation" (ngModelChange)="SearchPartnerLocation()"/>    
+        <input type="text" class="from-control" name="partnerLocation" placeholder="Search by Partner Location" [(ngModel)]="partnerLocation" (ngModelChange)="SearchPartnerLocation()"/>
     </nav>
 
     <nav class="from-group">
-        <input type="text" class="from-control" name="modelOfCollaborationType" placeholder="Search by Model Type" [(ngModel)]="modelOfCollaborationType" (ngModelChange)="SearchModelType()"/>    
+        <input type="text" class="from-control" name="modelOfCollaborationType" placeholder="Search by Model Type" [(ngModel)]="modelOfCollaborationType" (ngModelChange)="SearchModelType()"/>
     </nav>
     -->
 
 <ng-container *ngIf="isFirstSearchMade()">
     <table class="table table-condensed table-striped">
-        
+
         <thead>
             <tr class="separating_line">
                 <th colspan="2"></th>
@@ -112,13 +116,13 @@
         </thead>
         <tbody>
             <tr *ngFor="let randiData of filteredRAndIDataArray">
-                
+
                     <td>{{randiData.country}}</td>
                     <td>{{randiData.gblProgram}}</td>
                     <td>{{randiData.partnerName}}</td>
                     <td>{{randiData.partnerLocation}}</td>
                     <td>{{randiData.modelOfCollaborationType}}</td>
-                
+
             </tr>
         </tbody>
     </table>
