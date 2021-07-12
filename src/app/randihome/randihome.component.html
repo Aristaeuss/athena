@@ -1,10 +1,8 @@
 <header>
-    <p>R&I DASHBOARD</p>
-    <div class="header-button">
-      <button [routerLink]="['/randi']">go to file</button>
-    </div>
-    <div class="header-button">
-      <button class="filter-button"><img [src]="filterIcon"></button>
+    <div class="header-wrapper">
+      R&I DASHBOARD
+      <button class="file-button" [routerLink]="['/randi']">GO TO FILE</button>
+      <button class="filter-button"><img [src]="filterIcon" alt="filter-icon"></button>
     </div>
 </header>
 
