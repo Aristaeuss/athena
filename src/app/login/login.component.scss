@@ -1,3 +1,13 @@
+.logo {
+  height: 25%;
+  width: 100%;
+  margin-bottom: 2rem;
+  display: flex;
+}
+
+.logo img {
+  justify-content: center;
+}
 
 .login-wrapper {
   zoom: 80%;
@@ -12,11 +22,22 @@ input {
 .card {
   padding: 2rem;
   border-radius: 50px;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255);
   box-shadow: -12px 12px 2px 1px rgba(143, 96, 96, 0.3);
 }
 
 .alert {
   margin-top: 2rem;
   text-align: center;
+}
+
+.cap_logo {
+  height: 25%;
+  width: 100%;
+  margin-top: 2rem;
+  display: flex;
+}
+
+.cap_logo img {
+  justify-content: center;
 }

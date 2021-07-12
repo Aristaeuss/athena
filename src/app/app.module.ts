@@ -4,15 +4,16 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule } from '@angular/router';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { UnicoPipe } from './unico.pipe';
 
 import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
-
 import { RandiComponent } from './randi/randi.component';
 import { RandihomeComponent } from './randihome/randihome.component';
-import { UnicoPipe } from './unico.pipe';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { UnicoPipe } from './unico.pipe';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    NgSelectModule,
     HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot([
