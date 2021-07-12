@@ -22,6 +22,11 @@ background-color: rgba(0, 0, 0, 0);
 border: none;
 }
 
+.header-wrapper button:hover {
+  color: lightgrey;
+  font-weight: 600;
+}
+
 th, td {
     font-size: 0.5rem;
 }
