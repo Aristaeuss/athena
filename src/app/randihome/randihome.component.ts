@@ -83,4 +83,13 @@ export class RandihomeComponent implements OnInit {
         return this.firstSearchMade;
     }
 
+    isShown: boolean = false ; // hidden by default
+
+
+    toggleShow() {
+
+    this.isShown = ! this.isShown;
+
+    }
+
 }

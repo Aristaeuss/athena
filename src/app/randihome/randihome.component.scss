@@ -36,9 +36,12 @@ th, td {
 }
 
 .containerRandiHome {
-  margin-top: 0;
+    width: 30%;
+    height: 100%;
+    margin-top: 0;
     padding: 20px;
     background-color: lightgrey;
+    float: right;
 }
 
 .overlay {
@@ -105,7 +108,7 @@ th, td {
 
 /* Create six equal columns that floats next to each other */
 .column {
-    float: left;
+    float: right;
     width: 16%;
     padding: 10px;
 
