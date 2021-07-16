@@ -1,8 +1,8 @@
-
 <div class="login-wrapper">
-  <div class="logo">
-    <img class="centered_image" [src]="logo" alt="Athena_Logo">
-  </div>
+<div class="top-logo">
+  <img [src]="athenaLogo">
+</div>
+<div class="login-wrapper">
     <div class="card">
         <div class="card-body">
             <form class="signIn-form" (ngSubmit)="onSubmit(signInForm)" #signInForm='ngForm'>
@@ -34,7 +34,9 @@
             </form>
         </div>
     </div>
-    <div class="cap_logo">
-      <img class="centered_image" [src]="cap_logo" alt="Capgemini_Logo">
-    </div>
+
+</div>
+<div class="bottom-logo">
+  <img [src]="capgeminiLogo">
+</div>
 </div>

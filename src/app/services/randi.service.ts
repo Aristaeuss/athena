@@ -1,31 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpRequest, HttpEvent, HttpEventType, HttpResponse, HttpStatusCode } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpResponse, HttpStatusCode } from '@angular/common/http';
 import { Observable, Subscription } from 'rxjs';
-import { RandiData } from '../model/randiData';
-import { FilterData, OrderType } from '../model/filterData';
-import { RandihomeComponent } from '../randihome/randihome.component';
-
-const defaultFilters : FilterData = {
-  countryFilter: "",
-  countryOrder: OrderType.NONE,
-  gblProgramFilter: "",
-  gblProgramOrder: OrderType.NONE,
-  partnerNameFilter: "",
-  partnerNameOrder: OrderType.NONE,
-  partnerLocationFilter: "",
-  partnerLocationOrder: OrderType.NONE,
-  modelOfCollaborationTypeFilter:"",
-  modelOfCollaborationTypeOrder: OrderType.NONE,
-  indexFirstResult: 0,
-  indexLastResult: -1
- }
+import { FilterData } from '../model/filterData';
+import { RandiDataResponse } from '../model/randiDataResponse';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class RandiService {
-
 
   private baseUrl = 'http://localhost:8080';
   
@@ -36,8 +19,8 @@ export class RandiService {
   private notifyFunctions: Function[] = [];
   private errorFunctions: Function[] = [];
 
-  private rAndIDataObservable: Observable<RandiData[]> = new Observable((observer) => {
-    let notiFunc = (projects: RandiData[]) => observer.next(projects);
+  private rAndIDataObservable: Observable<RandiDataResponse> = new Observable((observer) => {
+    let notiFunc = (randiDataAndFields: RandiDataResponse) => observer.next(randiDataAndFields);
     this.notifyFunctions.push(notiFunc);
     let errFunc = (err: any) => observer.error(err);
     this.errorFunctions.push(errFunc);
@@ -50,10 +33,8 @@ export class RandiService {
     }};
   });
 
-
-
-  getRandiData(): Observable<RandiData[]> {
-    this.requestRAndIData(defaultFilters);
+  getRandiData(filterData: FilterData): Observable<RandiDataResponse> {
+    this.requestRAndIData(filterData);
     return this.rAndIDataObservable;
   }
 
@@ -75,7 +56,12 @@ export class RandiService {
             console.log(errorMessage);
             this.errorFunctions.forEach((errorFunction: Function) => errorFunction(errorMessage));
           } else {
-            this.notifyFunctions.forEach((notifyFunction: Function) => notifyFunction(event.body.RAndIProjects));
+            this.notifyFunctions.forEach((notifyFunction: Function) => notifyFunction({
+              randiData: event.body.RAndIProjects,
+              fieldLists: event.body.fieldLists,
+              numberOfDataLeft: event.body.numProjectsLeft,
+              excelLastUpdateTime: event.body.excelLastUpdateTime
+            }));
           }
           this.subscription?.unsubscribe();
         }

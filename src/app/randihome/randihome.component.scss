@@ -16,32 +16,103 @@ header {
 }
 
 .header-wrapper .filter-button {
-  float: right;
+    margin-top: 4px;
+    height: 25px;
+    float: right;
+}
+
+.header-wrapper .filter-button img{
+  height: 100%;
 }
 
 .header-wrapper button {
-  color: white;
-  font-size: 1rem;
-  background-color: rgba(0, 0, 0, 0);
-  border: none;
+    color: white;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
 }
 
 .header-wrapper button:hover {
-  color: lightgrey;
-  font-weight: 600;
+    color: lightgrey;
+    font-weight: 600;
 }
 
 th, td {
+    font-family: Raleway, sans-serif;
     font-size: 0.9rem;
 }
 
+.table {
+  margin-top: 10px;
+}
+
+.table-footer {
+  height: 20px;
+  width: 100%;
+  font-size: 12px;
+  display: flex;
+}
+
+.table-footer .second-half {
+  justify-content: flex-end;
+}
+
+.table-button-page {
+  border: none;
+  border-radius: 2px;
+  background-color: #00A0C6;
+  color: white;
+}
+
 .containerRandiHome {
-    width: 30%;
-    height: 100%;
+    width: 100%;
+    height: 98%;
     margin-top: 0;
     padding: 20px;
-    background-color: lightgrey;
+    background-color: rgba(235, 235, 235);
     float: right;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.tableRandiHome {
+    height: fit-content;
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+.chartContainer {
+    width: 400px;
+    padding-bottom: 20px;
+
+}
+
+.containerRandiHomeFilters {
+    font-family: Railway, sans-serif;
+    color: #333;
+    left: 80%;
+    position: absolute;
+    width: 20%;
+    height: 79.5%;
+    margin-top: 0;
+    padding: 15px 30px 30px 30px;
+    background-color: rgba(205, 205, 205);
+}
+
+.centered-text {
+  text-align: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #00A0C6;
+}
+
+.filter-x-button {
+  position: absolute;
+  margin-left: -20px;
+  margin-top: -5px;
+  border: 2px;
+  border-radius: 10px;
+  border-color: #333;
+  background-color: transparent;
 }
 
 .overlay {
@@ -55,7 +126,6 @@ th, td {
     visibility: visible;
     opacity: 1;
 }
-
 
 .popup {
     margin: 70px auto;
@@ -102,8 +172,8 @@ th, td {
 }
 
 .tableSize {
-    width: 240px;
-    height: 50px;
+    width: 280px;
+    height: 40px;
 }
 
 /* Create six equal columns that floats next to each other */
@@ -114,9 +184,101 @@ th, td {
 
 }
 
-  /* Clear floats after the columns */
-  .row:after {
+/* Clear floats after the columns */
+.row:after {
     content: "";
     display: table;
     clear: both;
+}
+
+select {
+  width: 80%;
+    border-radius: 20px;
+}
+
+.space {
+    padding-top: 20px;
+}
+
+.btn-primary {
+  margin-top: 25px;
+    background-color: #00A0C6;
+}
+
+.pieChartWrapper {
+    height: 90%;
+    width: 100%;
+    font-family: Raleway, sans-serif;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.button-wrapper {
+  width: 100%;
+  height: 4%;
+  display: flex;
+}
+
+.button-wrapper button img{
+  height: 100%;
+  background-color: transparent;
+  border: none;
+}
+
+.button-wrapper button{
+  background-color: transparent;
+  border: none;
+}
+
+.table-button {
+  margin-left: 2px;
+}
+
+.fullLine {
+  height: 18px;
+  width: fit-content;
+  margin-top: 8px;
+  background: rgb(205, 205, 205);
+  border-radius: 10px;
+  font-family: Raleway, sans-serif;
+  font-weight: 600;
+  font-size: 0.6rem;
+  padding: 4px;
+  color: #333;
+}
+
+.chartTypeCheckBoxContainer label {
+  margin-top: -2px;
+}
+
+.chartTypeCheckBoxContainer  {
+      display: flex;
+  }
+
+  .bolinhas {
+    margin-left: 8px;
+  }
+
+  .welcoming-to-randi-world {
+    height: 80%;
+    width: 100%;
+    position: fixed;
+    font-family: Raleway, sans-serif;
+    background-color: rgba(235, 235, 235);
+    color: #00A0C6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .welcom-text-wrapper {
+    margin-top: -60px;
+    display: column;
+  }
+
+  .welcome-title {
+    font-size: 1.5rem;
+    font-weight: 900;
+    text-align: center;
   }

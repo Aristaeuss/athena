@@ -1,31 +1,50 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
+.navbar {
+  height: 6em;
+}
+
+.navbar-brand {
+  width: 13%;
+}
+
+.navbar-brand img{
+  width: 100%;
+}
+
+.nav-item:hover {
+  font-weight: bold;
+}
+
 .nav-link {
   color: #00A0C6;
 }
 
 .nav-link:active {
   color: #00A0C6;
-
 }
 
-.navbar-brand {
-    font-family: Raleway, sans-serif;
-    font-weight: 900;
-    font-size: 3rem;
-    color: #00A0C6;
-}
-
-.navbar-brand:hover {
-    color: #00A0C6;
-}
-
-.navbar-brand:visited {
-  color: #00A0C6;
-}
 
 .pointer {
     cursor: pointer;
+}
+
+.dropdown-item {
+  color: #00A0C6;
+  border-bottom: #00A0C6;
+}
+
+.dropdown-item:hover {
+    background-color: lightgrey;
+    color: #00A0C6;
+    font-weight: bold;
+    font-weight: 800;
+}
+
+.dropdown-item:active {
+  background: lightgrey;
+  color: #00A0C6;
+  font-weight: 800;
 }
 
 .dropdown a {
@@ -44,25 +63,4 @@
   font-family: Raleway, sans-serif;
   color: #00A0C6;
   font-weight: 500;
-}
-
-.dropdown-item {
-  color: #00A0C6;
-  border-bottom: #00A0C6;
-}
-
-.dropdown-item:hover {
-  color: #00A0C6;
-  font-weight: bold;
-}
-
-.dropdown-item:hover {
-    color: #00A0C6;
-    font-weight: 800;
-}
-
-.dropdown-item:active {
-    background: lightgrey;
-    color: #00A0C6;
-    font-weight: 800;
 }

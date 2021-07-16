@@ -11,10 +11,10 @@ import { AuthService } from '../services/auth.service';
 })
 
 export class LoginComponent implements OnInit {
-    logo:string = "/src/assets/images/logo_branco_athena_small.png";
-    cap_logo:string = "/src/assets/images/logo_branco_capgemini.png";
 
     username?: FormControl;
+    capgeminiLogo ="/assets/images/logo_branco_capgemini.png";
+    athenaLogo ="/assets/images/logo_branco_athena_small.png";
 
     loginForm = new FormGroup({
         username: new FormControl('',[Validators.required, Validators.minLength(4)])

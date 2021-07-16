@@ -1,13 +1,12 @@
-
 <header>
-  <div class="header-wrapper">
-    R&I FILE
-    <button class="file-button" [routerLink]="['/randihome']">RETURN TO DASHBOARD</button>
-  </div>
+    <div class="header-wrapper">
+        R&I FILE
+        <button class="file-button" [routerLink]="['/randihome']">RETURN TO DASHBOARD</button>
+    </div>
 </header>
 
 <div class="containerRandi">
-<table class="table table-trapped">
+<table class="table table-trapped" datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger">
   <thead>
       <tr class="separating_line">
           <th colspan="4" ></th>
@@ -40,7 +39,7 @@
       </tr>
   </thead>
   <tbody>
-      <tr *ngFor="let randiData of randiDataArray">
+      <tr *ngFor="let randiData of randiDataArray; let i = index">
           <td>{{randiData.country}}</td>
           <td>{{randiData.gblProgram}}</td>
           <td>{{randiData.topic}}</td>

@@ -1,5 +1,5 @@
 export interface RandiData {
-  id: string;
+  id: number;
   country: string;
   gblProgram: string;
   topic: string;

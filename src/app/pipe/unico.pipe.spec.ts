@@ -1,4 +1,4 @@
-import { UnicoPipe } from './unico.pipe';
+import { UnicoPipe } from './unique-country.pipe';
 
 describe('UnicoPipe', () => {
   it('create an instance', () => {

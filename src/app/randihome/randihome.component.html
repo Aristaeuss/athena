@@ -1,143 +1,259 @@
 <header>
     <div class="header-wrapper">
-      R&I DASHBOARD
-      <button class="file-button" [routerLink]="['/randi']">GO TO FILE</button>
-      <button class="filter-button" (click)="toggleShow()"><img [src]="filterIcon" alt="filter-icon"></button>
+        R&I DASHBOARD
+        <button class="file-button" [routerLink]="['/randi']">GO TO FILE</button>
+        <button class="filter-button" (click)="toggleShowFilterList()">
+            <img class="filter-icon" [src]="filterIcon" alt="filter-icon">
+        </button>
+
     </div>
 </header>
-
-
-<div class="containerRandiHome" *ngIf="isShown">
-    <h5>Search by Filters</h5>
-    <form autocomplete="off">
-    <div class="xcolumn">
-        <div class="row">
-            <span>Search by Country </span>
-            <select class="tableSize" [(ngModel)]="country" name="country" (ngModelChange)="Search()">
-                <option [ngValue]="null" selected>Select a Country</option>
-                <option *ngFor="let randiData of filteredRAndIDataArray">
-                    {{randiData.country}}
-                </option>
-            </select>
-        </div>
-
-        <div class="row">
-            <span>Search by GBL Program  </span>
-            <select class="tableSize" [(ngModel)]="gblProgram" name="gblProgram" (ngModelChange)="Search()">
-                <option [ngValue]="null" selected>Select a GLB Program</option>
-                <option *ngFor="let randiData of filteredRAndIDataArray">
-                    {{randiData.gblProgram}}
-                </option>
-            </select>
-        </div>
-
-        <div class="row">
-            <span>Search by Partner Name  </span>
-            <select class="tableSize" [(ngModel)]="partnerName" name="partnerName" (ngModelChange)="Search()">
-                <option [ngValue]="null" selected>Select a Partner Name</option>
-                <option *ngFor="let randiData of filteredRAndIDataArray">
-                    {{randiData.partnerName}}
-                </option>
-            </select>
-        </div>
-
-        <div class="row">
-            <span>Search by Partner Location  </span>
-            <select class="tableSize" [(ngModel)]="partnerLocation" name="partnerLocation" (ngModelChange)="Search()">
-                <option [ngValue]="null" selected>Select a Partner Location</option>
-                <option *ngFor="let randiData of filteredRAndIDataArray">
-                    {{randiData.partnerLocation}}
-                </option>
-            </select>
-        </div>
-
-        <div class="row">
-            <span>Search by Collaboration Type </span>
-            <select class="tableSize" [(ngModel)]="modelOfCollaborationType" name="modelOfCollaborationType" (ngModelChange)="Search()">
-                <option [ngValue]="null" selected>Select a Collaboration Type</option>
-                <option *ngFor="let randiData of filteredRAndIDataArray">
-                    {{randiData.modelOfCollaborationType}}
-                </option>
-            </select>
-        </div>
-
-        <div class="row">
-            <span>Clear All Filters </span>
-            <button class="tableSize w-100 btn btn-lg btn-primary" (click)="ClearFilter()">Clear</button>
-        </div>
-
-
-    </div>
-    </form>
-    </div>
-
-
-
-    <!--
-    <nav class="from-group">
-        <input type="text" class="from-control" name="country" placeholder="Search by Country" [(ngModel)]="country" (ngModelChange)="SearchCountry()"/>
-    </nav>
-
-    <nav class="from-group">
-        <input type="text" class="from-control" name="gblProgram" placeholder="Search by GBL" [(ngModel)]="gblProgram" (ngModelChange)="SearchGBL()"/>
-    </nav>
-
-    <nav class="from-group">
-        <input type="text" class="from-control" name="partnerName" placeholder="Search by Partner Name" [(ngModel)]="partnerName" (ngModelChange)="SearchPartnerName()"/>
-    </nav>
-
-    <nav class="from-group">
-        <input type="text" class="from-control" name="partnerLocation" placeholder="Search by Partner Location" [(ngModel)]="partnerLocation" (ngModelChange)="SearchPartnerLocation()"/>
-    </nav>
-
-    <nav class="from-group">
-        <input type="text" class="from-control" name="modelOfCollaborationType" placeholder="Search by Model Type" [(ngModel)]="modelOfCollaborationType" (ngModelChange)="SearchModelType()"/>
-    </nav>
-    -->
-
+<div class="welcoming-to-randi-world" *ngIf="!isFirstSearchMade()">
+  <div class="welcom-text-wrapper">
+    <div class="welcome-title">Welcome to R&I!</div>
+    <div class="welcome-description">We have <span class="textWeight">{{gblProgramPieChartLabels.length}}</span> GBL active programs. Such as  <span class="textWeight">{{gblProgramPieChartLabels}}</span>, search by filter to see the details.</div>
+  </div>
+</div>
 <ng-container *ngIf="isFirstSearchMade()">
-    <table class="table table-condensed table-striped">
+<div class="containerRandiHome">
+  <div class="button-wrapper">
+    <button class="pie-chart-button" (click)="toggleShowChartList() && toggleShowOderList()">
+      <img [src]="chartIcon">
+    </button>
+    <button class="table-button" (click)="toggleShowTableList() && toggleShowOderList()">
+      <img [src]="tableIcon">
+    </button>
+  </div>
+  <div class="fullLine" *ngIf="isChartShown && isOderShown">
+    <div class="chartTypeCheckBoxContainer">
+      CHOOSE GRAPHIC BY TYPE:
+    <div class="bolinhas" *ngFor="let enum of chartTypeList">
+        <label for="enum_answer_{{enum.value}}">
+          <input id="enum_answer_{{enum}.value}" [value]='enum.value' type="radio" name="enums" [(ngModel)]="pieChartType"/>
+          <span>&nbsp;&nbsp;{{enum.name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+        </label>
+    </div>
+    </div>
+  </div>
+    <div class="pieChartWrapper" *ngIf="isChartShown && isOderShown">
 
-        <thead>
-            <tr class="separating_line">
-                <th colspan="2"></th>
-                <th colspan="2">Partner</th>
-                <th colspan="1">Collaboration's Model</th>
-            </tr>
-            <tr>
-                <th>Country</th>
-                <th>GBL Program</th>
-                <th>Name</th>
-                <th>Location</th>
-                <th>Type</th>
-                <th>See Details</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor="let randiData of filteredRAndIDataArray">
+        <!--<select [(ngModel)]="chartTypeBox.Title">
+            <option  *ngfor="let chart of chartTypeBox" [value]="chart.Value">{{chart.Text}}</option>
+        </select>-->
 
-                    <td>{{randiData.country}}</td>
+        <div class="chartContainer">
+            <div style="display: block; ">
+                <canvas baseChart
+                [data]="countryPieChartData"
+                [labels]="countryPieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [legend]="pieChartLegend">
+                </canvas>
+            </div>
+        </div>
+        <div class="chartContainer">
+            <div style="display: block; ">
+                <canvas baseChart
+                [data]="gblProgramPieChartData"
+                [labels]="gblProgramPieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [legend]="pieChartLegend">
+                </canvas>
+            </div>
+        </div>
+        <div class="chartContainer">
+            <div style="display: block; ">
+                <canvas baseChart
+                [data]="partnerNamePieChartData"
+                [labels]="partnerNamePieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [legend]="pieChartLegend">
+                </canvas>
+            </div>
+        </div>
+        <div class="chartContainer">
+            <div style="display: block; ">
+                <canvas baseChart
+                [data]="partnerLocationPieChartData"
+                [labels]="partnerLocationPieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [legend]="pieChartLegend">
+                </canvas>
+            </div>
+        </div>
+        <div class="chartContainer">
+            <div style="display: block; ">
+                <canvas baseChart
+                [data]="modelOfCollaborationPieChartData"
+                [labels]="modelOfCollaborationPieChartLabels"
+                [chartType]="pieChartType"
+                [options]="pieChartOptions"
+                [plugins]="pieChartPlugins"
+                [legend]="pieChartLegend">
+                </canvas>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="table" *ngIf="isTableShown && !isOderShown">
+        <table class="table table-condensed table-striped tableRandiHome" >
+
+            <thead>
+                <tr class="separating_line">
+                    <th colspan="2"></th>
+                    <th colspan="2">Partner</th>
+                    <th colspan="1">Collaboration's Model</th>
+                </tr>
+                <tr>
+                    <th>Country</th>
+                    <th>GBL Program</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Type</th>
+                    <th>See Details</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let randiData of randiDataArray">
+                    <td >{{randiData.country}}</td>
                     <td>{{randiData.gblProgram}}</td>
                     <td>{{randiData.partnerName}}</td>
                     <td>{{randiData.partnerLocation}}</td>
                     <td>{{randiData.modelOfCollaborationType}}</td>
+                    <td hidden>{{randiData.topic}}</td>
+                    <td hidden>{{randiData.rAndIProjectName}}</td>
+                    <td hidden>{{randiData.modelOfCollaborationSubType}}</td>
+                    <td hidden>{{randiData.investmentType}}</td>
+                    <td hidden>{{randiData.subjectKeywords}}</td>
+                    <td hidden>{{randiData.signContract}}</td>
+                    <td hidden>{{randiData.startDate}}</td>
+                    <td hidden>{{randiData.endDate}}</td>
+                    <td hidden>{{randiData.capgeminiContact}}</td>
+                    <td hidden>{{randiData.partnerContact}}</td>
+                    <td hidden>{{randiData.comments}}</td>
+                    <td hidden>{{randiData.lastUpdateDate}}</td>
+                    <td hidden>{{randiData.lastUpdatePersonName}}</td>
+                    <button class="btn btn-primary" type="button" (click)="ShowFullDetails(randiData.id)">Full Details</button>
+              </tr>
+            </tbody>
+        </table>
+        <div class="table-footer">
+          <div class="first-half">
+            <button class="table-button-page" type="button"(click)="PreviousPage()">Prev</button>
+            <span>&nbsp;&nbsp;&nbsp;</span>
+            <span>&nbsp;&nbsp;&nbsp;Showing Page {{currentPage}} of {{numberOfPages}}. </span>
+          </div>
+          <div class="second-half">
+            <span>&nbsp;&nbsp;&nbsp;Number of Results: {{numberOfEntries}}</span>
+            <span>Excel Last Update was at&nbsp;&nbsp;{{lastUpdateTime}}&nbsp;from&nbsp;{{lastUpdateDate}}.&nbsp;&nbsp;&nbsp;</span>
+            <button class="table-button-page" type="button" (click)="NextPage()">Next</button>
+          </div>
+        </div>
 
-            </tr>
-        </tbody>
-    </table>
-</ng-container>
-    <!--<a type="button"(click)="popup = true">Full Details</a>-->
-    <!--
-    <div class="overlay" *ngIf="popup">
+
+
+
+    <div class="overlay" *ngIf="popup && randiDataSelected">
         <div class="popup">
-            <h2>Full Details</h2>
+            <h2 style="color: blue;">Full Details</h2>
+            <div><h6 style="display: inline">Country: </h6><span style="display: inline">{{randiDataSelected.country}}</span></div>
+            <div><h6 style="display: inline">GBL Program: </h6><span style="display: inline">{{randiDataSelected.gblProgram}}</span></div>
+            <div><h6 style="display: inline">Topic: </h6><span style="display: inline">{{randiDataSelected.topic}}</span></div>
+            <div><h6 style="display: inline">R&I Project Name: </h6><span style="display: inline">{{randiDataSelected.rAndIProjectName}}</span></div>
+            <div><h6 style="display: inline">Partner Name: </h6><span style="display: inline">{{randiDataSelected.partnerName}}</span></div>
+            <div><h6 style="display: inline">Partner Location: </h6><span style="display: inline">{{randiDataSelected.partnerLocation}}</span></div>
+            <div><h6 style="display: inline">Model Of Collaboration Type: </h6><span style="display: inline">{{randiDataSelected.modelOfCollaborationType}}</span></div>
+            <div><h6 style="display: inline">Model Of Collaboration SubType: </h6><span style="display: inline">{{randiDataSelected.modelOfCollaborationSubType}}</span></div>
+            <div><h6 style="display: inline">Investment Type: </h6><span style="display: inline">{{randiDataSelected.investmentType}}</span></div>
+            <div><h6 style="display: inline">Subject (Keywords): </h6><span style="display: inline">{{randiDataSelected.subjectKeywords}}</span></div>
+            <div><h6 style="display: inline">Sign Contract: </h6><span style="display: inline">{{randiDataSelected.signContract}}</span></div>
+            <div><h6 style="display: inline">Start Date: </h6><span style="display: inline">{{randiDataSelected.startDate}}</span></div>
+            <div><h6 style="display: inline">End Date: </h6><span style="display: inline">{{randiDataSelected.endDate}}</span></div>
+            <div><h6 style="display: inline">Capgemini Contact: </h6><span style="display: inline">{{randiDataSelected.capgeminiContact}}</span></div>
+            <div><h6 style="display: inline">Partner Contact: </h6><span style="display: inline">{{randiDataSelected.partnerContact}}</span></div>
+            <div><h6 style="display: inline">Comments: </h6><span style="display: inline">{{randiDataSelected.comments}}</span></div>
+            <div><h6 style="display: inline">Last Update Date: </h6><span style="display: inline">{{randiDataSelected.lastUpdateDate}}</span></div>
+            <div><h6 style="display: inline">Last Update Person: </h6><span style="display: inline">{{randiDataSelected.lastUpdatePersonName}}</span></div>
+
             <a class="close" (click)="popup = false">&times;</a>
             <div class="content">
-                In Progress
             </div>
         </div>
     </div>
--->
+</div>
+</div>
+</ng-container>
 
+<div class="containerRandiHomeFilters" *ngIf="isShown">
+    <button class="filter-x-button" (click)="toggleShowFilterList()">X</button>
+    <div class="centered-text">Filter by:</div>
+    <form>
+        <div class="xcolumn">
 
+            <div class="row space">
+                <span>Country: </span>
+                <select class="tableSize" [(ngModel)]="country" name="country" (ngModelChange)="Search()">
+                    <option selected>Select a Country</option>
+                    <option *ngFor="let field of randiDataFieldLists.countryFields | sortBy" [ngValue]="field">
+                        {{field}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="row space">
+                <span>GBL Program: </span>
+                <select class="tableSize" [(ngModel)]="gblProgram" name="gblProgram" (ngModelChange)="Search()">
+                    <option selected>Select a GLB Program</option>
+                    <option *ngFor="let field of randiDataFieldLists.gblProgramFields | sortBy">
+                        {{field}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="row space">
+                <span>Partner Name: </span>
+                <select class="tableSize" [(ngModel)]="partnerName" name="partnerName" (ngModelChange)="Search()">
+                    <option selected>Select a Partner Name</option>
+                    <option *ngFor="let field of randiDataFieldLists.partnerNameFields | sortBy">
+                        {{field}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="row space">
+                <span>Partner Location: </span>
+                <select class="tableSize" [(ngModel)]="partnerLocation" name="partnerLocation" (ngModelChange)="Search()">
+                    <option selected>Select a Partner Location</option>
+                    <option *ngFor="let field of randiDataFieldLists.partnerLocationFields | sortBy">
+                        {{field}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="row space">
+                <span>Collaboration Type: </span>
+                <select class="tableSize" [(ngModel)]="modelOfCollaborationType" name="modelOfCollaborationType" (ngModelChange)="Search()">
+                    <option selected>Select a Collaboration Type</option>
+                    <option *ngFor="let field of randiDataFieldLists.modelOfCollaborationTypeFields | sortBy" placeholder="hghghj">
+                        {{field}}
+                    </option>
+                </select>
+            </div>
+
+            <div class="row space">
+                <p></p><button class="btn btn-lg btn-primary" (click)="ClearFilter()">Clear All Filters</button>
+            </div>
+
+        </div>
+    </form>
+</div>
 
