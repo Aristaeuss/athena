@@ -11,20 +11,24 @@
 <div class="welcoming-to-randi-world" *ngIf="!isFirstSearchMade()">
   <div class="welcom-text-wrapper">
     <div class="welcome-title">Welcome to R&I!</div>
-    <div class="welcome-description">We have <span class="textWeight">{{gblProgramPieChartLabels.length}}</span> GBL active programs. Such as  <span class="textWeight">{{gblProgramPieChartLabels}}</span>, search by filter to see the details.</div>
+    <div class="welcome-description" *ngIf="randiDataArray.length!=0">We have <span >{{gblProgramPieChartLabels.length}}</span> GBL active programs, such as <span *ngFor="let label of gblProgramPieChartLabels; let i = index">{{label}}<span *ngIf="i != gblProgramPieChartLabels.length - 1">, </span></span>. <b>Search by filter</b>
+      <button class="filter-button" (click)="toggleShowFilterList()">
+        <img class="filter-icon" [src]="filterIconBlue" alt="filter-icon">
+      </button> to see the details.</div>
+      <div class="welcome-description" *ngIf="randiDataArray.length==0"><b>There is no data available!</b></div>
   </div>
 </div>
 <ng-container *ngIf="isFirstSearchMade()">
 <div class="containerRandiHome">
   <div class="button-wrapper">
-    <button class="pie-chart-button" (click)="toggleShowChartList() && toggleShowOderList()">
+    <button class="pie-chart-button" (click)="toggleShowChartList()">
       <img [src]="chartIcon">
     </button>
-    <button class="table-button" (click)="toggleShowTableList() && toggleShowOderList()">
+    <button class="table-button" (click)="toggleShowTableList()">
       <img [src]="tableIcon">
     </button>
   </div>
-  <div class="fullLine" *ngIf="isChartShown && isOderShown">
+  <div class="fullLine" *ngIf="isChartShown">
     <div class="chartTypeCheckBoxContainer">
       CHOOSE GRAPHIC BY TYPE:
     <div class="bolinhas" *ngFor="let enum of chartTypeList">
@@ -35,7 +39,7 @@
     </div>
     </div>
   </div>
-    <div class="pieChartWrapper" *ngIf="isChartShown && isOderShown">
+    <div class="pieChartWrapper" *ngIf="isChartShown">
 
         <!--<select [(ngModel)]="chartTypeBox.Title">
             <option  *ngfor="let chart of chartTypeBox" [value]="chart.Value">{{chart.Text}}</option>
@@ -104,7 +108,7 @@
     </div>
 
 
-    <div class="table" *ngIf="isTableShown && !isOderShown">
+    <div class="table" *ngIf="isTableShown">
         <table class="table table-condensed table-striped tableRandiHome" >
 
             <thead>
@@ -116,6 +120,7 @@
                 <tr>
                     <th>Country</th>
                     <th>GBL Program</th>
+                    <th>Project Name</th>
                     <th>Name</th>
                     <th>Location</th>
                     <th>Type</th>
@@ -126,11 +131,11 @@
                 <tr *ngFor="let randiData of randiDataArray">
                     <td >{{randiData.country}}</td>
                     <td>{{randiData.gblProgram}}</td>
+                    <td>{{randiData.rAndIProjectName}}</td>
                     <td>{{randiData.partnerName}}</td>
                     <td>{{randiData.partnerLocation}}</td>
                     <td>{{randiData.modelOfCollaborationType}}</td>
                     <td hidden>{{randiData.topic}}</td>
-                    <td hidden>{{randiData.rAndIProjectName}}</td>
                     <td hidden>{{randiData.modelOfCollaborationSubType}}</td>
                     <td hidden>{{randiData.investmentType}}</td>
                     <td hidden>{{randiData.subjectKeywords}}</td>
@@ -154,7 +159,7 @@
           </div>
           <div class="second-half">
             <span>&nbsp;&nbsp;&nbsp;Number of Results: {{numberOfEntries}}</span>
-            <span>Excel Last Update was at&nbsp;&nbsp;{{lastUpdateTime}}&nbsp;from&nbsp;{{lastUpdateDate}}.&nbsp;&nbsp;&nbsp;</span>
+            <span>Excel Last Update was at&nbsp;&nbsp;{{lastUpdateTime}}&nbsp;on&nbsp;{{lastUpdateDate}}.&nbsp;&nbsp;&nbsp;</span>
             <button class="table-button-page" type="button" (click)="NextPage()">Next</button>
           </div>
         </div>
@@ -163,26 +168,31 @@
 
 
     <div class="overlay" *ngIf="popup && randiDataSelected">
-        <div class="popup">
-            <h2 style="color: blue;">Full Details</h2>
-            <div><h6 style="display: inline">Country: </h6><span style="display: inline">{{randiDataSelected.country}}</span></div>
-            <div><h6 style="display: inline">GBL Program: </h6><span style="display: inline">{{randiDataSelected.gblProgram}}</span></div>
-            <div><h6 style="display: inline">Topic: </h6><span style="display: inline">{{randiDataSelected.topic}}</span></div>
-            <div><h6 style="display: inline">R&I Project Name: </h6><span style="display: inline">{{randiDataSelected.rAndIProjectName}}</span></div>
-            <div><h6 style="display: inline">Partner Name: </h6><span style="display: inline">{{randiDataSelected.partnerName}}</span></div>
-            <div><h6 style="display: inline">Partner Location: </h6><span style="display: inline">{{randiDataSelected.partnerLocation}}</span></div>
-            <div><h6 style="display: inline">Model Of Collaboration Type: </h6><span style="display: inline">{{randiDataSelected.modelOfCollaborationType}}</span></div>
-            <div><h6 style="display: inline">Model Of Collaboration SubType: </h6><span style="display: inline">{{randiDataSelected.modelOfCollaborationSubType}}</span></div>
-            <div><h6 style="display: inline">Investment Type: </h6><span style="display: inline">{{randiDataSelected.investmentType}}</span></div>
-            <div><h6 style="display: inline">Subject (Keywords): </h6><span style="display: inline">{{randiDataSelected.subjectKeywords}}</span></div>
-            <div><h6 style="display: inline">Sign Contract: </h6><span style="display: inline">{{randiDataSelected.signContract}}</span></div>
-            <div><h6 style="display: inline">Start Date: </h6><span style="display: inline">{{randiDataSelected.startDate}}</span></div>
-            <div><h6 style="display: inline">End Date: </h6><span style="display: inline">{{randiDataSelected.endDate}}</span></div>
-            <div><h6 style="display: inline">Capgemini Contact: </h6><span style="display: inline">{{randiDataSelected.capgeminiContact}}</span></div>
-            <div><h6 style="display: inline">Partner Contact: </h6><span style="display: inline">{{randiDataSelected.partnerContact}}</span></div>
-            <div><h6 style="display: inline">Comments: </h6><span style="display: inline">{{randiDataSelected.comments}}</span></div>
-            <div><h6 style="display: inline">Last Update Date: </h6><span style="display: inline">{{randiDataSelected.lastUpdateDate}}</span></div>
-            <div><h6 style="display: inline">Last Update Person: </h6><span style="display: inline">{{randiDataSelected.lastUpdatePersonName}}</span></div>
+        <div class="popup"> <a class="navbar-brand">Athena</a>
+          <header>
+              <div class="header-wrapper">
+                  R&I DASHBOARD
+                  <span class="headerWrapperSubTitle">FULL DETAILS</span>
+              </div>
+          </header>
+            <div><h6 style="display: inline">Country: </h6><span style="display: inline">{{randiDataSelected.country}}</span><br>
+            <h6 style="display: inline">GBL Program: </h6><span style="display: inline">{{randiDataSelected.gblProgram}}</span><br>
+            <h6 style="display: inline">Topic: </h6><span style="display: inline">{{randiDataSelected.topic}}</span><br>
+            <h6 style="display: inline">R&I Project Name: </h6><span style="display: inline">{{randiDataSelected.rAndIProjectName}}</span><br>
+            <h6 style="display: inline">Partner Name: </h6><span style="display: inline">{{randiDataSelected.partnerName}}</span><br>
+            <h6 style="display: inline">Partner Location: </h6><span style="display: inline">{{randiDataSelected.partnerLocation}}</span><br>
+            <h6 style="display: inline">Model Of Collaboration Type: </h6><span style="display: inline">{{randiDataSelected.modelOfCollaborationType}}</span><br>
+            <h6 style="display: inline">Model Of Collaboration SubType: </h6><span style="display: inline">{{randiDataSelected.modelOfCollaborationSubType}}</span><br>
+            <h6 style="display: inline">Investment Type: </h6><span style="display: inline">{{randiDataSelected.investmentType}}</span><br>
+            <h6 style="display: inline">Subject (Keywords): </h6><span style="display: inline">{{randiDataSelected.subjectKeywords}}</span><br>
+            <h6 style="display: inline">Sign Contract: </h6><span style="display: inline">{{randiDataSelected.signContract}}</span><br>
+            <h6 style="display: inline">Start Date: </h6><span style="display: inline">{{randiDataSelected.startDate}}</span><br>
+            <h6 style="display: inline">End Date: </h6><span style="display: inline">{{randiDataSelected.endDate}}</span><br>
+            <h6 style="display: inline">Capgemini Contact: </h6><span style="display: inline">{{randiDataSelected.capgeminiContact}}</span><br>
+            <h6 style="display: inline">Partner Contact: </h6><span style="display: inline">{{randiDataSelected.partnerContact}}</span><br>
+            <h6 style="display: inline">Comments: </h6><span style="display: inline">{{randiDataSelected.comments}}</span><br>
+            <h6 style="display: inline">Last Update Date: </h6><span style="display: inline">{{randiDataSelected.lastUpdateDate}}</span><br>
+            <h6 style="display: inline">Last Update Person: </h6><span style="display: inline">{{randiDataSelected.lastUpdatePersonName}}</span></div>
 
             <a class="close" (click)="popup = false">&times;</a>
             <div class="content">

@@ -53,7 +53,6 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     isShown: boolean = false ;
     isChartShown: boolean = false;
     isTableShown: boolean = false;
-    isOderShown: boolean = false;
     popup: boolean = false;
     firstSearchMade: boolean = false;
 
@@ -61,6 +60,7 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     filterIcon = "/assets/images/filter_icon_dshb.png";
     chartIcon = "/assets/images/piechart_icon.png";
     tableIcon = "/assets/images/table_icon.png";
+    filterIconBlue = "/assets/images/filter_icon_dshb_blue.png";
 
     //Subscription
     subscription?: Subscription;
@@ -156,6 +156,9 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     }
 
     Search(): void {
+      if (!this.firstSearchMade) {
+        this.isChartShown = true;
+      }
         this.firstSearchMade = true;
         this.currentPage = 1;
         this.rs.refreshRAndiData(this.generateFilterData());
@@ -215,16 +218,14 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     }
 
     toggleShowChartList() {
-        return this.isChartShown =! this.isChartShown;
+      this.isTableShown= false;
+      this.isChartShown =! this.isChartShown;
     }
 
     toggleShowTableList() {
-      return this.isTableShown =! this.isTableShown;
+      this.isChartShown= false;
+      this.isTableShown =! this.isTableShown;
   }
-
-  toggleShowOderList() {
-    return this.isOderShown =! this.isOderShown;
-}
 
     NextPage():void {
         if (this.numberOfDataLeft > 0) {

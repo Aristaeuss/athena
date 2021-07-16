@@ -16,16 +16,20 @@ header {
 }
 
 .header-wrapper .filter-button {
-    margin-top: 4px;
-    height: 25px;
     float: right;
 }
 
-.header-wrapper .filter-button img{
+.filter-button {
+  margin-top: 4px;
+  height: 25px;
+  float: none;
+}
+
+.filter-button img{
   height: 100%;
 }
 
-.header-wrapper button {
+.header-wrapper button, .filter-button {
     color: white;
     font-size: 1rem;
     background-color: rgba(0, 0, 0, 0);
@@ -118,9 +122,9 @@ th, td {
 .overlay {
     position: fixed;
     top: 0;
-    bottom: 0;
     left: 0;
     right: 0;
+    bottom: 0;
     background: rgba(0, 0, 0, 0.7);
     transition: opacity 500ms;
     visibility: visible;
@@ -128,7 +132,9 @@ th, td {
 }
 
 .popup {
-    margin: 70px auto;
+  height: calc(100%-140px);
+  overflow: scroll;
+    margin: 70px auto 70px;
     padding: 20px;
     background: #fff;
     border-radius: 5px;
@@ -273,6 +279,7 @@ select {
   }
 
   .welcom-text-wrapper {
+    width: 60%;
     margin-top: -60px;
     display: column;
   }
@@ -282,3 +289,26 @@ select {
     font-weight: 900;
     text-align: center;
   }
+
+  .welcome-description {
+    text-align: center;
+  }
+
+  .navbar-brand {
+    padding-top: .3125rem;
+    padding-bottom: .3125rem;
+    margin-right: 1rem;
+    text-decoration: none;
+    white-space: nowrap;
+    font-family: Raleway, sans-serif;
+    font-weight: 900;
+    font-size: 3rem;
+    color: #00A0C6;
+}
+
+.headerWrapperSubTitle {
+    color: white;
+    font-size: 1rem;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
+}
