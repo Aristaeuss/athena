@@ -13,7 +13,7 @@ import { RandiDataResponse } from '../model/randiDataResponse';
 import { RandiService } from '../services/randi.service';
 
 
-const NUMBER_RESULTS_PER_PAGE = 5;
+const NUMBER_RESULTS_PER_PAGE = 8;
 const EXPECTED_MAX_NUMBER_OF_COLORS = 50;
 
 @Component({
@@ -43,15 +43,13 @@ export class RandihomeComponent implements OnInit, OnDestroy {
 
 
     chartTypeList = [
-        { id: 1, value: "bar", name: "BAR", isSelected: false},
-        { id: 2, value: "horizontalBar", name: "HORIZONTAL BAR", isSelected: false},
-        { id: 3, value: "doughnut", name: "DOUGHNUT", isSelected: false},
-        { id: 4, value: "pie", name: "PIE", isSelected: false}
+        { id: 1, value: "doughnut", name: "DOUGHNUT", isSelected: false},
+        { id: 2, value: "pie", name: "PIE", isSelected: false}
     ];
 
     // Boolean
     isShown: boolean = false ;
-    isChartShown: boolean = false;
+    isChartShown: boolean = true;
     isTableShown: boolean = false;
     popup: boolean = false;
     firstSearchMade: boolean = false;
@@ -156,9 +154,6 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     }
 
     Search(): void {
-      if (!this.firstSearchMade) {
-        this.isChartShown = true;
-      }
         this.firstSearchMade = true;
         this.currentPage = 1;
         this.rs.refreshRAndiData(this.generateFilterData());
@@ -225,7 +220,7 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     toggleShowTableList() {
       this.isChartShown= false;
       this.isTableShown =! this.isTableShown;
-  }
+    }
 
     NextPage():void {
         if (this.numberOfDataLeft > 0) {

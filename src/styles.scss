@@ -1,5 +1,12 @@
-html, body { height: 90%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+    height: 90%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .bg {
     background: url(/assets/images/background.png) no-repeat center center fixed;
@@ -9,25 +16,33 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background-size: cover;
 }
 
+
 /* width */
+
 ::-webkit-scrollbar {
-  width: 12px;
-  padding: 2px;
+    width: 12px;
+    padding: 2px;
 }
+
 
 /* Track */
+
 ::-webkit-scrollbar-track {
-  background:white;
+    background: white;
 }
+
 
 /* Handle */
+
 ::-webkit-scrollbar-thumb {
-  width: 8px;
-  background: #00A0C6;
-  border-radius: 1em;
+    width: 8px;
+    background: #00A0C6;
+    border-radius: 1em;
 }
 
+
 /* Handle on hover */
+
 ::-webkit-scrollbar-thumb:hover {
-  background: #00A0C6;
+    background: #00A0C6;
 }
