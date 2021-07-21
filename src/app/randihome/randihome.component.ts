@@ -13,7 +13,7 @@ import { RandiDataResponse } from '../model/randiDataResponse';
 import { RandiService } from '../services/randi.service';
 
 
-const NUMBER_RESULTS_PER_PAGE = 8;
+const NUMBER_RESULTS_PER_PAGE = 5;
 const EXPECTED_MAX_NUMBER_OF_COLORS = 50;
 
 @Component({
