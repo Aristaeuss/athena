@@ -189,67 +189,70 @@
             </div>
         </div>
     </div>
-</div>
-<div class="containerRandiHomeFilters" *ngIf="isShown">
-    <button class="filter-x-button" (click)="toggleShowFilterList()">X</button>
-    <div class="centered-text">Filter by:</div>
-    <form>
-        <div class="xcolumn">
 
-            <div class="row space filterSelect">
-                <span>Country: </span>
-                <select class="tableSize" [(ngModel)]="country" name="country" (ngModelChange)="Search()">
-                    <option selected>Select a Country</option>
-                    <option *ngFor="let field of randiDataFieldLists.countryFields | sortBy" [ngValue]="field">
-                        {{field}}
-                    </option>
-                </select>
+
+    <div class="containerRandiHomeFilters" *ngIf="isShown">
+        <button class="filter-x-button" (click)="toggleShowFilterList()">X</button>
+        <div class="centered-text">Filter by:</div>
+        <form>
+            <div class="xcolumn">
+
+                <div class="row space filterSelect">
+                    <span>Country: </span>
+                    <select class="tableSize" [(ngModel)]="country" name="country" (ngModelChange)="Search()">
+                        <option selected>Select a Country</option>
+                        <option *ngFor="let field of randiDataFieldLists.countryFields | sortBy" [ngValue]="field">
+                            {{field}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="row space filterSelect">
+                    <span>GBL Program: </span>
+                    <select class="tableSize" [(ngModel)]="gblProgram" name="gblProgram" (ngModelChange)="Search()">
+                        <option selected>Select a GLB Program</option>
+                        <option *ngFor="let field of randiDataFieldLists.gblProgramFields | sortBy">
+                            {{field}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="row space filterSelect">
+                    <span>Partner Name: </span>
+                    <select class="tableSize" [(ngModel)]="partnerName" name="partnerName" (ngModelChange)="Search()">
+                        <option selected>Select a Partner Name</option>
+                        <option *ngFor="let field of randiDataFieldLists.partnerNameFields | sortBy">
+                            {{field}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="row space filterSelect">
+                    <span>Partner Location: </span>
+                    <select class="tableSize" [(ngModel)]="partnerLocation" name="partnerLocation" (ngModelChange)="Search()">
+                        <option selected>Select a Partner Location</option>
+                        <option *ngFor="let field of randiDataFieldLists.partnerLocationFields | sortBy">
+                            {{field}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="row space filterSelect">
+                    <span>Collaboration Type: </span>
+                    <select class="tableSize" [(ngModel)]="modelOfCollaborationType" name="modelOfCollaborationType" (ngModelChange)="Search()">
+                        <option selected>Select a Collaboration Type</option>
+                        <option *ngFor="let field of randiDataFieldLists.modelOfCollaborationTypeFields | sortBy" placeholder="hghghj">
+                            {{field}}
+                        </option>
+                    </select>
+                </div>
+
+                <div class="row space">
+                    <p></p><button class="btn btn-lg btn-primary" (click)="ClearFilter()">Clear</button>
+                </div>
+
             </div>
+        </form>
+    </div>
 
-            <div class="row space filterSelect">
-                <span>GBL Program: </span>
-                <select class="tableSize" [(ngModel)]="gblProgram" name="gblProgram" (ngModelChange)="Search()">
-                    <option selected>Select a GLB Program</option>
-                    <option *ngFor="let field of randiDataFieldLists.gblProgramFields | sortBy">
-                        {{field}}
-                    </option>
-                </select>
-            </div>
-
-            <div class="row space filterSelect">
-                <span>Partner Name: </span>
-                <select class="tableSize" [(ngModel)]="partnerName" name="partnerName" (ngModelChange)="Search()">
-                    <option selected>Select a Partner Name</option>
-                    <option *ngFor="let field of randiDataFieldLists.partnerNameFields | sortBy">
-                        {{field}}
-                    </option>
-                </select>
-            </div>
-
-            <div class="row space filterSelect">
-                <span>Partner Location: </span>
-                <select class="tableSize" [(ngModel)]="partnerLocation" name="partnerLocation" (ngModelChange)="Search()">
-                    <option selected>Select a Partner Location</option>
-                    <option *ngFor="let field of randiDataFieldLists.partnerLocationFields | sortBy">
-                        {{field}}
-                    </option>
-                </select>
-            </div>
-
-            <div class="row space filterSelect">
-                <span>Collaboration Type: </span>
-                <select class="tableSize" [(ngModel)]="modelOfCollaborationType" name="modelOfCollaborationType" (ngModelChange)="Search()">
-                    <option selected>Select a Collaboration Type</option>
-                    <option *ngFor="let field of randiDataFieldLists.modelOfCollaborationTypeFields | sortBy" placeholder="hghghj">
-                        {{field}}
-                    </option>
-                </select>
-            </div>
-
-            <div class="row space">
-                <p></p><button class="btn btn-lg btn-primary" (click)="ClearFilter()">Clear All Filters</button>
-            </div>
-
-        </div>
-    </form>
 </div>
