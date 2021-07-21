@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-
 header {
     width: 100%;
     height: 2.5rem;
     color: white;
-    background-color:#00A0C6;
+    background-color: #00A0C6;
 }
 
 .header-wrapper {
@@ -20,16 +19,17 @@ header {
 }
 
 .filter-button {
-  margin-top: 4px;
-  height: 25px;
-  float: none;
+    margin-top: 4px;
+    height: 25px;
+    float: none;
 }
 
-.filter-button img{
-  height: 100%;
+.filter-button img {
+    height: 100%;
 }
 
-.header-wrapper button, .filter-button {
+.header-wrapper button,
+.filter-button {
     color: white;
     font-size: 1rem;
     background-color: rgba(0, 0, 0, 0);
@@ -41,42 +41,46 @@ header {
     font-weight: 600;
 }
 
-th, td {
+th,
+td {
+    height: 50px;
     font-family: Raleway, sans-serif;
     font-size: 0.9rem;
 }
 
 .table {
-  margin-top: 10px;
+    margin-top: 10px;
 }
 
 .table-footer {
-  height: 20px;
-  width: 100%;
-  font-size: 12px;
-  display: flex;
+    height: 20px;
+    width: 100%;
+    font-size: 12px;
+    display: flex;
 }
 
 .table-footer .second-half {
-  justify-content: flex-end;
+    justify-content: flex-end;
 }
 
 .table-button-page {
-  border: none;
-  border-radius: 2px;
-  background-color: #00A0C6;
-  color: white;
+    border: none;
+    border-radius: 2px;
+    background-color: #00A0C6;
+    color: white;
 }
 
 .containerRandiHome {
     width: 100%;
-    height: 98%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    height: fit-content;
     margin-top: 0;
     padding: 20px;
     background-color: rgba(235, 235, 235);
-    float: right;
     margin-left: auto;
     margin-right: auto;
+    float: right;
 }
 
 .tableRandiHome {
@@ -87,36 +91,44 @@ th, td {
 .chartContainer {
     width: 400px;
     padding-bottom: 20px;
+}
 
+.chartTitle {
+    text-align: center;
 }
 
 .containerRandiHomeFilters {
     font-family: Railway, sans-serif;
     color: #333;
     left: 80%;
-    position: absolute;
+    position: fixed;
     width: 20%;
-    height: 79.5%;
+    height: fit-content;
     margin-top: 0;
     padding: 15px 30px 30px 30px;
     background-color: rgba(205, 205, 205);
+    z-index: 10;
+}
+
+.filterSelect select {
+    width: 100%;
 }
 
 .centered-text {
-  text-align: center;
-  font-weight: 600;
-  font-size: 1.5rem;
-  color: #00A0C6;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #00A0C6;
 }
 
 .filter-x-button {
-  position: absolute;
-  margin-left: -20px;
-  margin-top: -5px;
-  border: 2px;
-  border-radius: 10px;
-  border-color: #333;
-  background-color: transparent;
+    position: absolute;
+    margin-left: -20px;
+    margin-top: -5px;
+    border: 2px;
+    border-radius: 10px;
+    border-color: #333;
+    background-color: transparent;
 }
 
 .overlay {
@@ -132,8 +144,8 @@ th, td {
 }
 
 .popup {
-  height: calc(100%-140px);
-  overflow: scroll;
+    height: calc(100%-140px);
+    overflow: scroll;
     margin: 70px auto 70px;
     padding: 20px;
     background: #fff;
@@ -171,8 +183,7 @@ th, td {
 }
 
 @media screen and (max-width: 700px) {
-
-    .popup{
+    .popup {
         width: 70%;
     }
 }
@@ -182,15 +193,18 @@ th, td {
     height: 40px;
 }
 
+
 /* Create six equal columns that floats next to each other */
+
 .column {
     float: right;
     width: 16%;
     padding: 10px;
-
 }
 
+
 /* Clear floats after the columns */
+
 .row:after {
     content: "";
     display: table;
@@ -198,7 +212,7 @@ th, td {
 }
 
 select {
-  width: 80%;
+    width: 80%;
     border-radius: 20px;
 }
 
@@ -207,94 +221,101 @@ select {
 }
 
 .btn-primary {
-  margin-top: 25px;
+    margin-top: 25px;
     background-color: #00A0C6;
 }
 
 .pieChartWrapper {
-    height: 90%;
+    padding: 10px;
+    height: fit-content;
     width: 100%;
     font-family: Raleway, sans-serif;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
 }
 
 .button-wrapper {
-  width: 100%;
-  height: 4%;
-  display: flex;
+    width: 100%;
+    height: 4%;
+    display: flex;
 }
 
-.button-wrapper button img{
-  height: 100%;
-  background-color: transparent;
-  border: none;
+.button-wrapper button img {
+    height: 40px;
+    width: 40px;
+    background-color: transparent;
+    border: none;
 }
 
-.button-wrapper button{
-  background-color: transparent;
-  border: none;
+.button-wrapper button {
+    background-color: transparent;
+    border: none;
 }
 
 .table-button {
-  margin-left: 2px;
+    margin-left: 2px;
 }
 
 .fullLine {
-  height: 18px;
-  width: fit-content;
-  margin-top: 8px;
-  background: rgb(205, 205, 205);
-  border-radius: 10px;
-  font-family: Raleway, sans-serif;
-  font-weight: 600;
-  font-size: 0.6rem;
-  padding: 4px;
-  color: #333;
+    height: 18px;
+    width: fit-content;
+    margin-top: 8px;
+    background: rgb(205, 205, 205);
+    border-radius: 10px;
+    font-family: Raleway, sans-serif;
+    font-weight: 600;
+    font-size: 0.6rem;
+    padding: 4px;
+    color: #333;
 }
 
 .chartTypeCheckBoxContainer label {
-  margin-top: -2px;
+    margin-top: -2px;
 }
 
-.chartTypeCheckBoxContainer  {
-      display: flex;
-  }
+.chartTypeCheckBoxContainer {
+    display: flex;
+}
 
-  .bolinhas {
+.bolinhas {
     margin-left: 8px;
-  }
+}
 
-  .welcoming-to-randi-world {
-    height: 79.5%;
-    width: 100%;
+.mainContentContainer {
+    overflow-y: scroll;
     position: fixed;
+    height: 80%;
+    width: 100%;
+}
+
+.welcoming-to-randi-world {
+    width: 100%;
     font-family: Raleway, sans-serif;
-    background-color: rgba(235, 235, 235);
+    background-color: rgb(235, 235, 235);
     color: #00A0C6;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}
 
-  .welcom-text-wrapper {
+.welcom-text-wrapper {
     width: 60%;
-    margin-top: -60px;
+    padding: 10px 0 10px 0;
     display: column;
-  }
+}
 
-  .welcome-title {
+.welcome-title {
     font-size: 1.5rem;
     font-weight: 900;
     text-align: center;
-  }
+}
 
-  .welcome-description {
+.welcome-description {
     text-align: center;
-  }
+}
 
-  .navbar-brand {
+.navbar-brand {
     padding-top: .3125rem;
     padding-bottom: .3125rem;
     margin-right: 1rem;
@@ -311,4 +332,15 @@ select {
     font-size: 1rem;
     background-color: rgba(0, 0, 0, 0);
     border: none;
+}
+
+.fullDetailsButton {
+    background-color: transparent;
+    border: none;
+    color: #00A0C6;
+    text-decoration: underline;
+}
+
+.fullDetailsButton:hover {
+    font-style: italic;
 }
