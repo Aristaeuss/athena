@@ -17,6 +17,13 @@ import { RandiComponent } from './randi/randi.component';
 import { RandihomeComponent } from './randihome/randihome.component';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { ChartsModule } from 'ng2-charts';
+import { ProfileComponent } from './profile/profile.component';
+import { ProfileManagementComponent } from './profile-management/profile-management.component';
+import { SectorOrOccupationSortPipe } from './pipe/sectorOrOccupationSortPipe';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { ProfileRowViewComponent } from './profile-row-view/profile-row-view.component';
+import { AddInstitutionComponent } from './add-institution/add-institution.component';
+import { AddUserComponent } from './add-user/add-user.component';
 
 
 
@@ -28,7 +35,14 @@ import { ChartsModule } from 'ng2-charts';
         RandiComponent,
         RandihomeComponent,
         SortPipe,
-        BarChartComponent
+        SectorOrOccupationSortPipe,
+        BarChartComponent,
+        ProfileComponent,
+        ProfileManagementComponent,
+        ProfileViewComponent,
+        ProfileRowViewComponent,
+        AddInstitutionComponent,
+        AddUserComponent
     ],
     imports: [
         BrowserModule,
@@ -40,6 +54,9 @@ import { ChartsModule } from 'ng2-charts';
         NgxChartsModule,
         ChartsModule,
         RouterModule.forRoot([
+          {path: 'profile', component: ProfileComponent},
+          {path: 'management/profiles', component: ProfileManagementComponent},
+          {path: 'institutions/add', component: AddInstitutionComponent},
           {path: 'randihome', component: RandihomeComponent},
           {path: 'randi', component: RandiComponent},
           {path: 'homepage', component: HomepageComponent},
@@ -47,7 +64,8 @@ import { ChartsModule } from 'ng2-charts';
       ])
     ],
     providers: [
-        SortPipe
+        SortPipe,
+        SectorOrOccupationSortPipe
     ],
     bootstrap: [AppComponent]
 })

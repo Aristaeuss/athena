@@ -11,6 +11,7 @@ import { FilterData, OrderType } from '../model/filterData';
 import { RandiData } from '../model/randiData';
 import { RandiDataResponse } from '../model/randiDataResponse';
 import { RandiService } from '../services/randi.service';
+import { HttpStatusCode } from '@angular/common/http';
 
 
 const NUMBER_RESULTS_PER_PAGE = 5;
@@ -66,11 +67,11 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     //Numbers
     currentPage: number = 1;
     numberOfDataLeft: number = 0;
-    excelLastUpdateTime: string = "";
     numberOfPages: number = 0;
     numberOfEntries: number = 0;
 
     //Strings
+    excelLastUpdateTime: string = "";
     country = "";
     gblProgram = "";
     partnerName = "";
@@ -78,6 +79,8 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     modelOfCollaborationType = "";
     lastUpdateDate = "";
     lastUpdateTime = "";
+
+    forceUpdateErrorMsg = "";
 
     public pieChartOptions: ChartOptions = {
         responsive: true,
@@ -116,7 +119,7 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.subscription = this.rs.getRandiData(this.generateFilterData()).subscribe({
+        this.subscription = this.rs.getRandiDataObservable().subscribe({
             next: (randiDataResponse: RandiDataResponse) => {
                 this.randiDataArray = randiDataResponse.randiData;
                 this.randiDataFieldLists = randiDataResponse.fieldLists;
@@ -140,8 +143,11 @@ export class RandihomeComponent implements OnInit, OnDestroy {
                 this.SplitExcelLastUpdateTime();
                 this.reCalculatePageInfo();
             },
-            error: (err: any) => { } //TODO
+            error: (err: any) => {
+                console.log(err); 
+            } //TODO
         });
+        this.rs.requestRAndIData(this.generateFilterData());
     }
 
     ngOnDestroy(): void {
@@ -156,7 +162,7 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     Search(): void {
         this.firstSearchMade = true;
         this.currentPage = 1;
-        this.rs.refreshRAndiData(this.generateFilterData());
+        this.rs.requestRAndIData(this.generateFilterData());
     }
 
     ClearFilter(): void {
@@ -167,7 +173,7 @@ export class RandihomeComponent implements OnInit, OnDestroy {
         this.modelOfCollaborationType = "";
         this.firstSearchMade = false;
         this.currentPage = 1;
-        this.rs.refreshRAndiData(this.generateFilterData());
+        this.rs.requestRAndIData(this.generateFilterData());
     }
 
     reCalculatePageInfo(): void {
@@ -175,7 +181,6 @@ export class RandihomeComponent implements OnInit, OnDestroy {
                                ((this.numberOfDataLeft == 0) ? (this.randiDataArray.length - NUMBER_RESULTS_PER_PAGE) : this.numberOfDataLeft);
         this.numberOfPages = Math.floor(this.numberOfEntries / NUMBER_RESULTS_PER_PAGE) +
                              ((this.numberOfEntries % NUMBER_RESULTS_PER_PAGE) == 0 ? 0 : 1);
-
     }
 
     private generateFilterData(): FilterData {
@@ -225,15 +230,29 @@ export class RandihomeComponent implements OnInit, OnDestroy {
     NextPage():void {
         if (this.numberOfDataLeft > 0) {
             this.currentPage++;
+            this.rs.requestRAndIData(this.generateFilterData());
         }
-        this.rs.refreshRAndiData(this.generateFilterData());
     }
 
     PreviousPage():void {
         if (this.currentPage > 1) {
             this.currentPage--;
+            this.rs.requestRAndIData(this.generateFilterData());
         }
-        this.rs.refreshRAndiData(this.generateFilterData());
     }
 
+    forceUpdate():void {
+        this.rs.forceUpdate().subscribe(
+            (event: any) => {
+                if (event.status && event.status != HttpStatusCode.Ok) {
+                    this.forceUpdateErrorMsg = "There was an error updating from the Excel file"
+                } else if (event.status == HttpStatusCode.Ok) {
+                    this.rs.requestRAndIData(this.generateFilterData());
+                }
+            },
+            (err: any) => {
+                this.forceUpdateErrorMsg = "There was an error updating from the Excel file"
+            }
+        )
+    }
 }

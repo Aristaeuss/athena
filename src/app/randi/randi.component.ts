@@ -39,13 +39,16 @@ export class RandiComponent implements OnInit, OnDestroy {
     constructor(public rs: RandiService) { }
 
     ngOnInit(): void {
-        this.subscription = this.rs.getRandiData(defaultFilters).subscribe({
+        this.subscription = this.rs.getRandiDataObservable().subscribe({
             next: (randiDataAndFields: RandiDataResponse) => { 
                 this.randiDataArray = randiDataAndFields.randiData;
                 this.dtTrigger.next();
             },
-            error: (err: any) => { } //TODO
+            error: (err: any) => {
+                console.log(err); 
+            } //TODO
         });
+        this.rs.requestRAndIData(defaultFilters)
 
         this.dtOptions = {
             pagingType: 'full_numbers',

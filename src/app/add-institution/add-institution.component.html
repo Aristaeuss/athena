@@ -1,0 +1,61 @@
+<div class="outer-container">
+    <div class="inner-container">
+        <div class="inner-inner-container">
+            <header class="header">
+                <div class="header-wrapper">
+                    ADD INSTITUITON
+                </div>
+            </header>
+            <div class="form-container">
+                <form id="add-institution-form" class="add-institution-form" (ngSubmit)="submitInstitution()">
+                    <div class="form-left-half">
+                        <label for="name-input">
+                            *Name:
+                        </label>
+                        <input type="text" id="name-input" required (change)="nameChanged($event.target)">
+                        <label for="adress-input">
+                            Adress:
+                        </label>
+                        <input type="text" id="adress-input" (change)="adressChanged($event.target)">
+                        <label for="phone-input">
+                            Phone:  
+                        </label>
+                        <div *ngIf="showPhoneNumbers" class="phone-numbers-container">
+                            <div class="phone-number-container" *ngFor="let phoneNumber of phoneNumbers; index as i; last as isLast">
+                                <input type="number" [attr.id]="'phone-input-' + i" (change)="phoneNumberChanged($event.target, i)" [attr.value]="phoneNumber">
+                                <button type="button" class="remove-number-button" *ngIf="!isLast" (click)="removePhoneNumber(i)">- Remove</button>
+                                <button type="button" class="add-number-button" *ngIf="isLast" (click)="addPhoneNumber()">+ Add number</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-right-half">
+                        <label for="email-input">
+                            Email:
+                        </label>
+                        <input type="email" id="email-input" (change)="emailChanged($event.target)">
+                        <label for="website-input">
+                            *Website:
+                        </label>
+                        <input type="text" id="website-input" required (change)="websiteChanged($event.target)">
+                        <label for="district-input">
+                            *District:
+                        </label>
+                        <select id="district-input" (change)="districtChanged($event.target)">
+                            <option disabled selected required>
+                                Select a District
+                            </option>
+                        </select>
+                    </div>
+                </form>
+                <div class="submit-error-message" style="color:red">
+                    {{submitErrorMessage}}
+                </div>
+            </div>
+            <footer class="footer">
+                <button class="add-button" type="submit" form="add-institution-form">
+                    ADD >
+                </button>
+            </footer>
+        </div>
+    </div>
+</div>

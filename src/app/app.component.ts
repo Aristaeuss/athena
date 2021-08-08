@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { AuthService } from './services/auth.service';
 
@@ -13,10 +14,24 @@ export class AppComponent {
 
     athenaLogoAzul="/assets/images/logo_azul_athena.png";
 
-    constructor(public authService: AuthService) { }
+    constructor(public authService: AuthService,
+        private router: Router) { }
 
-    logout() {
+    myProfile(): void {
+        this.router.navigate(['profile']);
+    }
+
+    profiles(): void {
+        this.router.navigate(['management/profiles']);
+    }
+
+    logout(): void {
         this.authService.logout();
+        this.router.navigate(['']);
+    }
+    
+    addInstitution(): void {
+        this.router.navigate(['institutions/add'])
     }
 }
 
