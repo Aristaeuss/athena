@@ -1,0 +1,50 @@
+<div class="main-content-container">
+    <div class="profile-info-container">
+        <div class="no-data-message" *ngIf="!user">
+            No user data to display.
+        </div>
+        <div class="profile-info" *ngIf="user">
+            <div class="profile-info-column name-column">
+                <h6 style="display:inline">Name: </h6><span>{{user.name}}</span>
+            </div>
+            <div class="profile-info-column email-column">
+                <h6 style="display:inline">E-mail: </h6><span>{{user.email}}</span>
+            </div>
+            <div class="profile-info-column role-column">
+                <div *ngIf="!editingRole">
+                    <h6 style="display:inline">Role: </h6><span>{{roleNameFromId(user.roleId)}}</span>
+                    <div *ngIf="editable">
+                        <button class="edit-button" (click)="editRole()">
+                            Edit
+                        </button>
+                        <span style="color:green;">
+                            {{" " + editRoleSuccesfulMessage}}
+                        </span>
+                    </div>
+                </div>
+                <div *ngIf="editingRole">
+                    <form class="edit-form edit-role-form" (ngSubmit)="submitEditRole()">
+                        <div *ngIf="rolesList && rolesList.length > 0">
+                            <select (change)="roleSelected($event.target)" required>
+                                <option selected disabled>
+                                    Select a Role
+                                </option>
+                                <option *ngFor="let role of rolesList">
+                                    {{role}}
+                                </option>
+                            </select>
+                            <input class="submit-button" type="submit" value="OK">
+                        </div>
+                        <div *ngIf="!rolesList || rolesList.length == 0">
+                            No roles available
+                        </div>
+                        <button class="x-button" (click)="cancelEditRole()">
+                            X
+                        </button>
+                        <span style="color:red;"> {{editRoleErrorMessage}}</span>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

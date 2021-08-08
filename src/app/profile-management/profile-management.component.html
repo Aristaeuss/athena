@@ -1,0 +1,58 @@
+<header>
+    <div class="header-wrapper">
+        USER MANAGEMENT
+    </div>
+</header>
+<div class="content-container">
+    <div class="buttons-container">
+        <div class="button-wrapper">
+            <button class="users-list-button" (click)="toggleShowUsersList()">
+                <img [src]="usersIconPath">
+            </button>
+            <button class="add-user-button" (click)="toggleShowAddUserPage()">
+                <img [src]="addUserIconPath">
+            </button>
+        </div>
+    </div>
+    <div class="users-table" *ngIf="isUsersListShown">
+        <div class="table-filter-wrapper">
+            <span>Search by Name: </span>
+            <input style="width: 200px;" type="text" (change)="nameFilterChanged($event.target)" [(ngModel)]="nameFilter">
+            <span> 🔍</span>
+            <button class="clear-button" (click)="ClearFilter()">Clear</button>
+        </div>
+        <div *ngIf="usersToDisplay && usersToDisplay.length != 0">
+            <div class="profile-row-view-container" *ngFor="let user of usersToDisplay">
+                <button class="view-button" (click)="viewProfile(user.id)">View</button>
+                <app-profile-row-view class="profile-row-view" [editable]="user.roleId != 1" [userId]="user.id"></app-profile-row-view>
+            </div>
+            <div class="footer-container">
+                <div class="table-footer">
+                    <button class="table-button-page" type="button" (click)="PreviousPage()">Prev</button>
+                    <span>Showing Page {{currentPage}} of {{numberOfPages}}. Number of Results: {{numberOfEntries}}</span>
+                    <button class="table-button-page" type="button" (click)="NextPage()">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="no-data-message" *ngIf="!usersToDisplay || usersToDisplay.length == 0">
+            No users to display
+        </div>
+
+        <div class="overlay" *ngIf="userIdToShowProfileFor">
+            <div class="popup"> <a class="navbar-brand">Athena</a>
+                <header>
+                    <div class="header-wrapper">
+                        USER MANAGEMENT
+                        <span class="headerWrapperSubTitle">FULL DETAILS</span>
+                    </div>
+                </header>
+                <app-profile-view [editable]="true" [userId]="userIdToShowProfileFor"></app-profile-view>
+
+                <a class="close" (click)="closePopup()">&times;</a>
+            </div>
+        </div>
+    </div>
+    <div class="add-user-page-wrapper" *ngIf="isAddUserPageShown">
+        <app-add-user class="add-user-page"></app-add-user>
+    </div>
+</div>

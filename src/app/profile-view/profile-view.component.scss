@@ -1,0 +1,92 @@
+.mainContentContainer {
+    overflow-y: hidden;
+    height: fit-content;
+    width: fit-content;
+    text-align: center;
+}
+
+.profileInfoContainer {
+    width: 100%;
+    overflow-x: hidden;
+    height: fit-content;
+    margin-top: 0;
+    padding: 20px;
+}
+
+.profileInfo {
+    width: max-content;
+    display: flex;
+    flex-direction: column;
+}
+
+.editButton {
+    text-decoration: underline;
+    background: transparent;
+    border: none;
+    padding: 0 0 0 10px;
+    margin: 0;
+    color: #00A0C6;
+}
+
+.editButton:hover {
+    font-style: italic;
+}
+
+.profileInfoRow {
+    text-align: left;
+    display: flex;
+    flex-direction: row;
+}
+
+.profileInfoRow>h6 {
+    width: 300px;
+}
+
+.profileInfoRow div {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+}
+
+.noDataMessage {
+    font-family: Raleway, sans-serif;
+    color: #00A0C6;
+}
+
+.x-button {
+    border: none;
+    background-color: transparent;
+}
+
+.submit-button {
+    border: none;
+    border-radius: 2px;
+    background-color: #00A0C6;
+    color: white;
+}
+
+.editForm {
+    display: flex;
+    flex-direction: row;
+    width: max-content;
+    justify-content: space-between;
+    border: 2px solid;
+    border-radius: 4px;
+    border-color: #00A0C6;
+    padding: 2px;
+}
+
+.editForm div {
+    display: flex;
+    flex-direction: row;
+}
+
+.editForm select {
+    padding: 0px;
+    width: 150px;
+    margin: 0px 10px 0px 10px;
+}
+
+.editForm span {
+    width: max-content;
+}

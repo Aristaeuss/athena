@@ -1,0 +1,111 @@
+<div class="mainContentContainer">
+    <div class="profileInfoContainer">
+        <div class="noDataMessage" *ngIf="!user">
+            No user data to display.
+        </div>
+        <div class="profileInfo" *ngIf="user">
+            <div class="profileInfoRow">
+                <h6>Role: </h6>
+                <div>
+                    <span>{{roleNameFromId(user.roleId)}}</span>
+                </div>
+            </div>
+            <div class="profileInfoRow">
+                <h6>Position: </h6>
+                <div>
+                    <div *ngIf="!editingOccupation">
+                        <span *ngIf="user.occupation">{{user.occupation.description}} (Sector: {{user.occupation.sector.description}})</span>
+                        <span *ngIf="!user.occupation">Undefined</span>
+                        <div *ngIf="editable">
+                            <button class="editButton" (click)="editOccupation()">
+                                Edit
+                            </button>
+                            <span style="color:green;">
+                                {{" " + editOccupationSuccesfulMessage}}
+                            </span>
+                        </div>
+                    </div>
+                    <div *ngIf="editingOccupation">
+                        <form class="editForm editOccupationForm" (ngSubmit)="submitEditOccupation()">
+                            <div *ngIf="sectorsList && sectorsList.length > 0">
+                                <span>
+                                    Sector: 
+                                </span>
+                                <select (change)="sectorSelected($event.target)" required>
+                                    <option selected disabled>
+                                        Select a Sector
+                                    </option>
+                                    <option *ngFor="let sector of sectorsList">
+                                        {{sector.description}}
+                                    </option>
+                                </select>
+                                <div *ngIf="occupationsList && occupationsList.length > 0">
+                                    <span>
+                                        Occupation: 
+                                    </span>
+                                    <select (change)="occupationSelected($event.target)" required>
+                                        <option selected disabled>
+                                            Select a Position
+                                        </option>
+                                        <option *ngFor="let occupation of occupationsList">
+                                            {{occupation.description}}
+                                        </option>
+                                    </select>
+                                </div>
+                                <div *ngIf="selectedSector && (!occupationsList || occupationsList.length == 0)">
+                                    No occupations for that Sector
+                                </div>
+                                <input class="submit-button" type="submit" value="OK">
+                            </div>
+                            <div *ngIf="!sectorsList || sectorsList.length == 0">
+                                No sectors available
+                            </div>
+                            <button class="x-button" (click)="cancelEditOccupation()">
+                                X
+                            </button>
+                            <span style="color:red;"> {{editOccupationErrorMessage}}</span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="profileInfoRow">
+                <h6 style="display: inline;">Name: </h6>
+                <div>
+                    <span>{{user.name}}</span>
+                </div>
+            </div>
+            <div class="profileInfoRow">
+                <h6>Email: </h6>
+                <div>
+                    <span>{{user.email}}</span>
+                </div>
+            </div>
+            <div class="profileInfoRow">
+                <h6>Phone Number: </h6>
+                <div>
+                    <div *ngIf="!editingPhoneNumber">
+                        <span>{{user.phoneNumber}}</span>
+                        <div *ngIf="editable">
+                            <button class="editButton" (click)="editPhoneNumber()">
+                                Edit
+                            </button>
+                            <span style="color:green;">
+                                {{" " + editPhoneNumberSuccessfulMessage}}
+                            </span>
+                        </div>
+                    </div>
+                    <div *ngIf="editingPhoneNumber">
+                        <form class="editForm editPhoneNumberForm" (ngSubmit)="submitEditPhoneNumber()">
+                            <input type="number" (change)="phoneNumberInputed($event.target)">
+                            <input class="submit-button" type="submit" value="OK">
+                            <button class="x-button" (click)="cancelEditPhoneNumber()">
+                                X
+                            </button>
+                            <span style="color:red;"> {{editPhoneNumberErrorMessage}}</span>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
